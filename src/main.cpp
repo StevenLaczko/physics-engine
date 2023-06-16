@@ -65,7 +65,6 @@ int main(int argc, char* argv[]) {
                     c->getPosX()*PIXELS_PER_METER, 
                     c->getPosY()*PIXELS_PER_METER, 
                     c->getRadius());
-            c->physStep(deltaTime);
         }
 
         x = mouseX;
@@ -74,6 +73,11 @@ int main(int argc, char* argv[]) {
 
         // Update the screen
         SDL_RenderPresent(renderer);
+
+        for (int i=0; i<numCircles; i++) {
+            circles[i].physStep(deltaTime);
+        }
+
 
         // Calculate delta time
         Uint64 currentFrameTime = SDL_GetPerformanceCounter();
